@@ -1,8 +1,8 @@
 
 import React from 'react';
-import MainLayout from '@/layouts/MainLayout';
-import Hero from '@/components/Hero';
-import CarCard from '@/components/CarCard';
+import MainLayout from '../layouts/MainLayout';
+import Hero from '../components/Hero';
+import CarCard from '../components/CarCard';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ShoppingBag, Clock, Car, HelpCircle } from 'lucide-react';
 
@@ -268,3 +268,4 @@ const Index = () => {
 };
 
 export default Index;
+
