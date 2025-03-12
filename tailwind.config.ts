@@ -114,8 +114,9 @@ export default {
 				'geometric-pattern': "url('/src/assets/patterns/geometric-pattern.svg')",
 			},
 			fontFamily: {
-				sans: ['Inter', 'sans-serif'],
-				serif: ['Playfair Display', 'serif'],
+				sans: ['Cairo', 'Inter', 'sans-serif'],
+				serif: ['Amiri', 'Playfair Display', 'serif'],
+				arabic: ['Cairo', 'Amiri', 'sans-serif'],
 			},
 		}
 	},
