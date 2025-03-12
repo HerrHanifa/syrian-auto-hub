@@ -22,11 +22,11 @@ const Navbar = () => {
   const closeMenu = () => setIsOpen(false);
 
   const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'New & Used Cars', path: '/car-listings', icon: <Car size={16} /> },
-    { name: 'Rentals', path: '/rentals', icon: <Clock size={16} /> },
-    { name: 'Spare Parts', path: '/spare-parts', icon: <ShoppingBag size={16} /> },
-    { name: 'Know Your Needs', path: '/know-your-needs', icon: <HelpCircle size={16} /> },
+    { name: 'الرئيسية', path: '/' },
+    { name: 'سيارات جديدة ومستعملة', path: '/car-listings', icon: <Car size={16} /> },
+    { name: 'إيجار سيارات', path: '/rentals', icon: <Clock size={16} /> },
+    { name: 'قطع غيار', path: '/spare-parts', icon: <ShoppingBag size={16} /> },
+    { name: 'اعرف احتياجاتك', path: '/know-your-needs', icon: <HelpCircle size={16} /> },
   ];
 
   return (
@@ -43,8 +43,8 @@ const Navbar = () => {
             className="flex items-center gap-2"
             onClick={closeMenu}
           >
-            <span className="font-serif text-xl font-bold text-syria-terracotta">Syrian</span>
-            <span className="font-serif text-xl font-bold">Auto Hub</span>
+            <span className="font-serif text-xl font-bold text-syria-terracotta">مركز</span>
+            <span className="font-serif text-xl font-bold">السيارات السوري</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -71,13 +71,13 @@ const Navbar = () => {
               to="/login"
               className="px-4 py-2 text-sm font-medium text-foreground/80 hover:text-syria-terracotta transition-colors"
             >
-              Log in
+              تسجيل الدخول
             </Link>
             <Link
               to="/register"
               className="button-primary text-sm"
             >
-              List Your Car
+              أضف سيارتك
             </Link>
           </div>
 
@@ -85,7 +85,7 @@ const Navbar = () => {
           <button
             onClick={toggleMenu}
             className="md:hidden flex items-center text-foreground"
-            aria-label={isOpen ? "Close menu" : "Open menu"}
+            aria-label={isOpen ? "إغلاق القائمة" : "فتح القائمة"}
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -117,14 +117,14 @@ const Navbar = () => {
                   className="py-2 font-medium text-foreground/80"
                   onClick={closeMenu}
                 >
-                  Log in
+                  تسجيل الدخول
                 </Link>
                 <Link
                   to="/register"
                   className="button-primary"
                   onClick={closeMenu}
                 >
-                  List Your Car
+                  أضف سيارتك
                 </Link>
               </div>
             </div>

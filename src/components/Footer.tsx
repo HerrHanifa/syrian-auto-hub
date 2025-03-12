@@ -11,12 +11,12 @@ const Footer = () => {
           <div className="space-y-4">
             <Link to="/" className="inline-block">
               <div className="flex items-center gap-2">
-                <span className="font-serif text-xl font-bold text-syria-terracotta">Syrian</span>
-                <span className="font-serif text-xl font-bold">Auto Hub</span>
+                <span className="font-serif text-xl font-bold text-syria-terracotta">مركز</span>
+                <span className="font-serif text-xl font-bold">السيارات السوري</span>
               </div>
             </Link>
             <p className="text-muted-foreground text-sm max-w-xs">
-              The premier marketplace for buying, selling, and renting vehicles in Syria. Connect with dealers and private sellers today.
+              سوق السيارات الرائد لشراء وبيع وتأجير المركبات في سوريا. تواصل مع الوكلاء والبائعين اليوم.
             </p>
             <div className="flex gap-4">
               <a href="#" className="text-muted-foreground hover:text-syria-terracotta transition-colors" aria-label="Facebook">
@@ -35,14 +35,14 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="font-medium text-lg mb-4">Quick Links</h3>
+            <h3 className="font-medium text-lg mb-4">روابط سريعة</h3>
             <ul className="space-y-2">
               {[
-                { name: 'New & Used Cars', path: '/car-listings' },
-                { name: 'Car Rentals', path: '/rentals' },
-                { name: 'Spare Parts', path: '/spare-parts' },
-                { name: 'Know Your Needs', path: '/know-your-needs' },
-                { name: 'Sell Your Car', path: '/list-car' },
+                { name: 'سيارات جديدة ومستعملة', path: '/car-listings' },
+                { name: 'إيجار سيارات', path: '/rentals' },
+                { name: 'قطع غيار', path: '/spare-parts' },
+                { name: 'اعرف احتياجاتك', path: '/know-your-needs' },
+                { name: 'بيع سيارتك', path: '/list-car' },
               ].map((link) => (
                 <li key={link.path}>
                   <Link 
@@ -57,14 +57,14 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="font-medium text-lg mb-4">Information</h3>
+            <h3 className="font-medium text-lg mb-4">معلومات</h3>
             <ul className="space-y-2">
               {[
-                { name: 'About Us', path: '/about' },
-                { name: 'Contact Us', path: '/contact' },
-                { name: 'Privacy Policy', path: '/privacy' },
-                { name: 'Terms & Conditions', path: '/terms' },
-                { name: 'FAQs', path: '/faqs' },
+                { name: 'من نحن', path: '/about' },
+                { name: 'اتصل بنا', path: '/contact' },
+                { name: 'سياسة الخصوصية', path: '/privacy' },
+                { name: 'الشروط والأحكام', path: '/terms' },
+                { name: 'الأسئلة الشائعة', path: '/faqs' },
               ].map((link) => (
                 <li key={link.path}>
                   <Link 
@@ -79,12 +79,12 @@ const Footer = () => {
           </div>
 
           <div>
-            <h3 className="font-medium text-lg mb-4">Contact Us</h3>
+            <h3 className="font-medium text-lg mb-4">اتصل بنا</h3>
             <ul className="space-y-3">
               <li className="flex items-start gap-2">
                 <MapPin size={18} className="text-syria-terracotta mt-0.5 flex-shrink-0" />
                 <span className="text-muted-foreground text-sm">
-                  Damascus, Syria
+                  دمشق، سوريا
                 </span>
               </li>
               <li className="flex items-start gap-2">
@@ -106,15 +106,15 @@ const Footer = () => {
         <div className="separator" />
 
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-4">
-          <p className="text-muted-foreground text-sm text-center md:text-left">
-            © {new Date().getFullYear()} Syrian Auto Hub. All rights reserved.
+          <p className="text-muted-foreground text-sm text-center md:text-right">
+            © {new Date().getFullYear()} مركز السيارات السوري. جميع الحقوق محفوظة.
           </p>
           <div className="flex gap-4">
             <Link to="/privacy" className="text-muted-foreground hover:text-foreground text-sm transition-colors">
-              Privacy Policy
+              سياسة الخصوصية
             </Link>
             <Link to="/terms" className="text-muted-foreground hover:text-foreground text-sm transition-colors">
-              Terms of Service
+              شروط الخدمة
             </Link>
           </div>
         </div>

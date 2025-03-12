@@ -53,15 +53,16 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				// Syrian-inspired colors
+				// Syrian-inspired colors with Facebook blue
 				syria: {
 					sand: '#E5DED1',
-					terracotta: '#B75B4E',
-					turquoise: '#3E8A8B',
+					terracotta: '#1877F2', // Changed from original terracotta to Facebook blue
+					turquoise: '#0EA5E9', // Changed to a lighter blue
 					cream: '#F5F2EA',
-					deepred: '#9E2B25',
+					deepred: '#0A66C2', // Changed to a darker blue
 					olive: '#6C733D',
 					gold: '#D4AF37',
+					facebookBlue: '#1877F2', // Added Facebook blue
 				}
 			},
 			borderRadius: {

@@ -14,47 +14,47 @@ const Hero = () => {
       <div className="container-custom relative z-10">
         <div className="max-w-3xl mx-auto text-center">
           <h1 className="heading-1 mb-6 animate-fade-up" style={{ animationDelay: '0.1s' }}>
-            Find the Perfect Car in <span className="text-syria-terracotta">Syria</span>
+            ابحث عن السيارة المثالية في <span className="text-syria-terracotta">سوريا</span>
           </h1>
           <p className="subtitle mb-8 animate-fade-up" style={{ animationDelay: '0.3s' }}>
-            Browse thousands of cars from trusted dealers and private sellers across Syria, all in one place.
+            تصفح آلاف السيارات من الوكلاء الموثوقين والبائعين في جميع أنحاء سوريا، كل ذلك في مكان واحد.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 animate-fade-up" style={{ animationDelay: '0.5s' }}>
             <Link to="/car-listings" className="button-primary">
-              Browse Cars
+              تصفح السيارات
             </Link>
             <Link to="/know-your-needs" className="inline-flex items-center justify-center gap-2 text-sm font-medium text-foreground hover:text-syria-terracotta transition-colors">
-              <span>Know Your Needs</span>
+              <span>اعرف احتياجاتك</span>
               <ArrowRight size={16} />
             </Link>
           </div>
           
           <div className="glass-card p-6 max-w-2xl mx-auto animate-fade-up" style={{ animationDelay: '0.7s' }}>
-            <h2 className="text-xl font-medium mb-4">Quick Search</h2>
+            <h2 className="text-xl font-medium mb-4">بحث سريع</h2>
             <form className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div className="relative">
                 <select className="w-full bg-white border border-input rounded-md py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all">
-                  <option value="">All Makes</option>
-                  <option value="toyota">Toyota</option>
-                  <option value="honda">Honda</option>
-                  <option value="bmw">BMW</option>
-                  <option value="mercedes">Mercedes</option>
-                  <option value="kia">Kia</option>
+                  <option value="">جميع الماركات</option>
+                  <option value="toyota">تويوتا</option>
+                  <option value="honda">هوندا</option>
+                  <option value="bmw">بي إم دبليو</option>
+                  <option value="mercedes">مرسيدس</option>
+                  <option value="kia">كيا</option>
                 </select>
               </div>
               <div className="relative">
                 <select className="w-full bg-white border border-input rounded-md py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all">
-                  <option value="">Price Range</option>
-                  <option value="5000">Under $5,000</option>
-                  <option value="10000">Under $10,000</option>
-                  <option value="20000">Under $20,000</option>
-                  <option value="30000">Under $30,000</option>
+                  <option value="">نطاق السعر</option>
+                  <option value="5000">أقل من 5,000$</option>
+                  <option value="10000">أقل من 10,000$</option>
+                  <option value="20000">أقل من 20,000$</option>
+                  <option value="30000">أقل من 30,000$</option>
                 </select>
               </div>
               <button className="bg-primary text-white rounded-md py-2 px-4 text-sm font-medium flex items-center justify-center gap-2 hover:bg-primary/90 transition-colors">
                 <Search size={16} />
-                <span>Search</span>
+                <span>بحث</span>
               </button>
             </form>
           </div>
