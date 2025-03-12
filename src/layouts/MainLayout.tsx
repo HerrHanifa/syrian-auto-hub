@@ -9,7 +9,7 @@ interface MainLayoutProps {
   children: React.ReactNode;
 }
 
-const MainLayout = ({ children }: MainLayoutProps) => {
+const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   const location = useLocation();
   
   return (
@@ -26,4 +26,3 @@ const MainLayout = ({ children }: MainLayoutProps) => {
 };
 
 export default MainLayout;
-

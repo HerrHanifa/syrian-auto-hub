@@ -1,4 +1,3 @@
-
 import React from 'react';
 import MainLayout from '../layouts/MainLayout';
 import Hero from '../components/Hero';
@@ -105,27 +104,27 @@ const Index = () => {
               {[
                 {
                   icon: <Car className="h-8 w-8 text-syria-terracotta" />,
-                  title: 'New & Used Cars',
-                  description: 'Browse our extensive collection of new and pre-owned vehicles from trusted dealers.',
-                  link: '/car-listings'
+                  title: "New & Used Cars",
+                  description: "Browse our extensive collection of new and pre-owned vehicles from trusted dealers.",
+                  link: "/car-listings"
                 },
                 {
                   icon: <Clock className="h-8 w-8 text-syria-turquoise" />,
-                  title: 'Car Rentals',
-                  description: 'Rent a car for a day, week, or longer from our network of rental providers.',
-                  link: '/rentals'
+                  title: "Car Rentals",
+                  description: "Rent a car for a day, week, or longer from our network of rental providers.",
+                  link: "/rentals"
                 },
                 {
                   icon: <ShoppingBag className="h-8 w-8 text-syria-olive" />,
-                  title: 'Spare Parts',
-                  description: 'Find genuine and aftermarket parts for all makes and models.',
-                  link: '/spare-parts'
+                  title: "Spare Parts",
+                  description: "Find genuine and aftermarket parts for all makes and models.",
+                  link: "/spare-parts"
                 },
                 {
                   icon: <HelpCircle className="h-8 w-8 text-syria-gold" />,
-                  title: 'Know Your Needs',
-                  description: 'Answer a few questions and we'll help you find the perfect car.',
-                  link: '/know-your-needs'
+                  title: "Know Your Needs",
+                  description: "Answer a few questions and we will help you find the perfect car.",
+                  link: "/know-your-needs"
                 }
               ].map((service, i) => (
                 <div 
@@ -268,4 +267,3 @@ const Index = () => {
 };
 
 export default Index;
-
