@@ -1,363 +1,257 @@
 
 import React, { useState } from 'react';
-import MainLayout from '@/layouts/MainLayout';
+import MainLayout from '../layouts/MainLayout';
+import { AlertCircle, CheckCircle2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, ArrowRight, Check, Car, Users, Coins, Fuel, Map, Shield } from 'lucide-react';
-import { Link } from 'react-router-dom';
-import { useToast } from '@/hooks/use-toast';
+import { Card, CardContent } from '@/components/ui/card';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Separator } from '@/components/ui/separator';
+import { Progress } from '@/components/ui/progress';
 
 interface Question {
-  id: string;
-  question: string;
-  description: string;
-  options: {
-    id: string;
-    text: string;
-    icon?: React.ReactNode;
-  }[];
+  id: number;
+  text: string;
+  options: { id: string; text: string }[];
 }
 
 const questions: Question[] = [
   {
-    id: 'usage',
-    question: 'How will you primarily use your car?',
-    description: 'Choose the main purpose for your vehicle.',
+    id: 1,
+    text: 'ما هو الغرض الرئيسي لاستخدام السيارة؟',
     options: [
-      { id: 'commute', text: 'Daily commute', icon: <Car className="h-10 w-10 mb-3 text-syria-turquoise" /> },
-      { id: 'family', text: 'Family transport', icon: <Users className="h-10 w-10 mb-3 text-syria-turquoise" /> },
-      { id: 'business', text: 'Business use', icon: <Shield className="h-10 w-10 mb-3 text-syria-turquoise" /> },
-      { id: 'travel', text: 'Long-distance travel', icon: <Map className="h-10 w-10 mb-3 text-syria-turquoise" /> },
+      { id: 'a', text: 'التنقل داخل المدينة' },
+      { id: 'b', text: 'رحلات طويلة بين المدن' },
+      { id: 'c', text: 'نقل العائلة' },
+      { id: 'd', text: 'استخدام تجاري' },
     ],
   },
   {
-    id: 'budget',
-    question: 'What is your budget range?',
-    description: 'Select the price range you are comfortable with.',
+    id: 2,
+    text: 'ما هو نوع الطرق التي تقود عليها عادة؟',
     options: [
-      { id: 'budget_1', text: 'Under $10,000', icon: <Coins className="h-10 w-10 mb-3 text-syria-terracotta" /> },
-      { id: 'budget_2', text: '$10,000 - $20,000', icon: <Coins className="h-10 w-10 mb-3 text-syria-terracotta" /> },
-      { id: 'budget_3', text: '$20,000 - $30,000', icon: <Coins className="h-10 w-10 mb-3 text-syria-terracotta" /> },
-      { id: 'budget_4', text: 'Above $30,000', icon: <Coins className="h-10 w-10 mb-3 text-syria-terracotta" /> },
+      { id: 'a', text: 'طرق معبدة في المدينة' },
+      { id: 'b', text: 'طرق سريعة' },
+      { id: 'c', text: 'طرق غير معبدة' },
+      { id: 'd', text: 'مزيج من الطرق المختلفة' },
     ],
   },
   {
-    id: 'passengers',
-    question: 'How many passengers do you regularly transport?',
-    description: 'Select the typical number of people in your vehicle.',
+    id: 3,
+    text: 'كم عدد الركاب الذين تنقلهم عادة؟',
     options: [
-      { id: 'pass_1', text: '1-2 people' },
-      { id: 'pass_2', text: '3-4 people' },
-      { id: 'pass_3', text: '5-7 people' },
-      { id: 'pass_4', text: '8+ people' },
+      { id: 'a', text: 'شخص أو شخصين' },
+      { id: 'b', text: '3-4 أشخاص' },
+      { id: 'c', text: '5-7 أشخاص' },
+      { id: 'd', text: 'أكثر من 7 أشخاص' },
     ],
   },
   {
-    id: 'fuel',
-    question: 'What type of fuel do you prefer?',
-    description: 'Choose your preferred fuel type based on availability and cost in Syria.',
+    id: 4,
+    text: 'ما نوع الوقود الذي تفضله؟',
     options: [
-      { id: 'petrol', text: 'Petrol', icon: <Fuel className="h-10 w-10 mb-3 text-syria-olive" /> },
-      { id: 'diesel', text: 'Diesel', icon: <Fuel className="h-10 w-10 mb-3 text-syria-olive" /> },
-      { id: 'hybrid', text: 'Hybrid', icon: <Fuel className="h-10 w-10 mb-3 text-syria-olive" /> },
-      { id: 'any', text: 'No preference', icon: <Fuel className="h-10 w-10 mb-3 text-syria-olive" /> },
+      { id: 'a', text: 'بنزين' },
+      { id: 'b', text: 'ديزل' },
+      { id: 'c', text: 'هجين (هايبرد)' },
+      { id: 'd', text: 'كهربائي' },
     ],
   },
   {
-    id: 'condition',
-    question: 'What condition of car are you looking for?',
-    description: 'Select your preference for vehicle condition.',
+    id: 5,
+    text: 'ما هي ميزانيتك لشراء السيارة؟',
     options: [
-      { id: 'new', text: 'New' },
-      { id: 'used_like_new', text: 'Used (Like New)' },
-      { id: 'used_good', text: 'Used (Good Condition)' },
-      { id: 'any_condition', text: 'Any Condition' },
+      { id: 'a', text: 'أقل من 10,000 دولار' },
+      { id: 'b', text: '10,000 - 20,000 دولار' },
+      { id: 'c', text: '20,000 - 30,000 دولار' },
+      { id: 'd', text: 'أكثر من 30,000 دولار' },
     ],
   },
 ];
 
-type AnswerKey = string;
-type AnswerValue = string;
-type Answers = Record<AnswerKey, AnswerValue>;
-
-interface ResultCategory {
-  title: string;
-  description: string;
-  recommendations: {
-    model: string;
-    price: string;
-    image: string;
-  }[];
-}
-
-// This is a simplified example of how recommendations would work
-// In a real app, this would likely be more complex and data-driven
-const getResults = (answers: Answers): ResultCategory[] => {
-  // This is just for demo purposes - would be based on actual answers in a real app
-  const isFamilyUse = answers.usage === 'family';
-  const isHighBudget = ['budget_3', 'budget_4'].includes(answers.budget);
-  const needsMoreSpace = ['pass_3', 'pass_4'].includes(answers.passengers);
-  
-  if (isFamilyUse || needsMoreSpace) {
-    return [
-      {
-        title: 'Family SUVs & Minivans',
-        description: 'Vehicles with ample space for passengers and cargo, ideal for family use.',
-        recommendations: [
-          {
-            model: 'Toyota Fortuner',
-            price: '$30,000 - $35,000',
-            image: 'https://images.unsplash.com/photo-1625253560124-e776d0a5392e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80'
-          },
-          {
-            model: 'Hyundai Santa Fe',
-            price: '$25,000 - $32,000',
-            image: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?ixlib=rb-4.0.3&auto=format&fit=crop&w=1374&q=80'
-          },
-          {
-            model: 'Kia Carnival',
-            price: '$28,000 - $34,000',
-            image: 'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?ixlib=rb-4.0.3&auto=format&fit=crop&w=1172&q=80'
-          }
-        ]
-      }
-    ];
-  } else if (isHighBudget) {
-    return [
-      {
-        title: 'Premium Sedans',
-        description: 'Luxury vehicles offering comfort, performance, and prestige.',
-        recommendations: [
-          {
-            model: 'Mercedes-Benz C-Class',
-            price: '$32,000 - $40,000',
-            image: 'https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80'
-          },
-          {
-            model: 'BMW 3 Series',
-            price: '$30,000 - $38,000',
-            image: 'https://images.unsplash.com/photo-1523983388277-336a66bf9bcd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80'
-          },
-          {
-            model: 'Audi A4',
-            price: '$29,000 - $36,000',
-            image: 'https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1469&q=80'
-          }
-        ]
-      }
-    ];
-  } else {
-    return [
-      {
-        title: 'Practical & Economical',
-        description: 'Reliable, fuel-efficient vehicles that are perfect for daily commuting or business use.',
-        recommendations: [
-          {
-            model: 'Toyota Corolla',
-            price: '$16,000 - $22,000',
-            image: 'https://images.unsplash.com/photo-1623869675781-80aa31012a5a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1471&q=80'
-          },
-          {
-            model: 'Honda Civic',
-            price: '$17,000 - $23,000',
-            image: 'https://images.unsplash.com/photo-1590510696098-9cefc2c75b63?ixlib=rb-4.0.3&auto=format&fit=crop&w=1374&q=80'
-          },
-          {
-            model: 'Kia Cerato',
-            price: '$15,000 - $21,000',
-            image: 'https://images.unsplash.com/photo-1657656783833-2a0d109830ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80'
-          }
-        ]
-      }
-    ];
-  }
+const carRecommendations: Record<string, any[]> = {
+  'aabaa': [
+    { name: 'تويوتا يارس', image: 'https://images.unsplash.com/photo-1617814076367-b759c7d7e738?auto=format&fit=crop&q=80&w=400', price: '9,500$' },
+    { name: 'هيونداي إلنترا', image: 'https://images.unsplash.com/photo-1617814076067-da0dcc9407a9?auto=format&fit=crop&q=80&w=400', price: '10,500$' },
+  ],
+  'abcaa': [
+    { name: 'كيا سبورتاج', image: 'https://images.unsplash.com/photo-1631144482731-a19b0f78f98c?auto=format&fit=crop&q=80&w=400', price: '19,500$' },
+    { name: 'هيونداي توسان', image: 'https://images.unsplash.com/photo-1634807064328-78bc82b3f8e9?auto=format&fit=crop&q=80&w=400', price: '20,000$' },
+  ],
+  'bcdcc': [
+    { name: 'تويوتا لاند كروزر', image: 'https://images.unsplash.com/photo-1623843146476-616d9833cd9a?auto=format&fit=crop&q=80&w=400', price: '28,500$' },
+    { name: 'جيب جراند شيروكي', image: 'https://images.unsplash.com/photo-1544793828-1d6c2c4442c6?auto=format&fit=crop&q=80&w=400', price: '29,900$' },
+  ],
+  'cdadd': [
+    { name: 'مرسيدس بنز الفئة E', image: 'https://images.unsplash.com/photo-1563720223523-110fd0a81c2e?auto=format&fit=crop&q=80&w=400', price: '35,000$' },
+    { name: 'بي إم دبليو الفئة 5', image: 'https://images.unsplash.com/photo-1556189250-72ba954cfc2b?auto=format&fit=crop&q=80&w=400', price: '37,500$' },
+  ],
 };
 
+const defaultRecommendations = [
+  { name: 'تويوتا كورولا', image: 'https://images.unsplash.com/photo-1623869675184-d9ec98537a2d?auto=format&fit=crop&q=80&w=400', price: '17,500$' },
+  { name: 'هوندا سيفيك', image: 'https://images.unsplash.com/photo-1622551957961-b8a74fe36dd6?auto=format&fit=crop&q=80&w=400', price: '18,900$' },
+];
+
 const KnowYourNeeds = () => {
-  const [currentStep, setCurrentStep] = useState(0);
-  const [answers, setAnswers] = useState<Answers>({});
-  const [results, setResults] = useState<ResultCategory[] | null>(null);
-  const [selectedOption, setSelectedOption] = useState<string | null>(null);
-  const { toast } = useToast();
-
-  const handleOptionSelect = (questionId: string, optionId: string) => {
-    setSelectedOption(optionId);
-    setAnswers({
-      ...answers,
-      [questionId]: optionId,
-    });
+  const [currentQuestion, setCurrentQuestion] = useState<number>(0);
+  const [answers, setAnswers] = useState<Record<number, string>>({});
+  const [showResults, setShowResults] = useState<boolean>(false);
+  
+  const handleAnswer = (questionId: number, answerId: string) => {
+    setAnswers({ ...answers, [questionId]: answerId });
   };
-
+  
   const handleNext = () => {
-    if (!selectedOption) {
-      toast({
-        title: "Please select an option",
-        description: "You need to select an option before proceeding.",
-        variant: "destructive",
-      });
-      return;
-    }
-
-    if (currentStep < questions.length - 1) {
-      setCurrentStep(currentStep + 1);
-      setSelectedOption(answers[questions[currentStep + 1].id] || null);
+    if (currentQuestion < questions.length - 1) {
+      setCurrentQuestion(currentQuestion + 1);
     } else {
-      // Last question, show results
-      setResults(getResults(answers));
+      setShowResults(true);
     }
   };
-
-  const handlePrevious = () => {
-    if (currentStep > 0) {
-      setCurrentStep(currentStep - 1);
-      setSelectedOption(answers[questions[currentStep - 1].id] || null);
+  
+  const handleBack = () => {
+    if (currentQuestion > 0) {
+      setCurrentQuestion(currentQuestion - 1);
     }
   };
-
-  const handleStartOver = () => {
-    setCurrentStep(0);
-    setAnswers({});
-    setResults(null);
-    setSelectedOption(null);
+  
+  const getRecommendations = () => {
+    if (Object.keys(answers).length !== questions.length) {
+      return defaultRecommendations;
+    }
+    
+    const answerKey = questions.map(q => answers[q.id]).join('');
+    return carRecommendations[answerKey] || defaultRecommendations;
   };
-
-  const currentQuestion = questions[currentStep];
-
+  
+  const progress = ((currentQuestion + 1) / questions.length) * 100;
+  
   return (
     <MainLayout>
-      <section className="py-20 bg-muted/30 min-h-screen">
-        <div className="container-custom">
-          <div className="text-center max-w-3xl mx-auto mb-10">
-            <h1 className="heading-2 mb-4">Know Your Needs</h1>
-            <p className="subtitle">
-              Answer a few questions about your preferences and requirements, and we'll help you find the perfect car for your needs.
-            </p>
-          </div>
-
-          <div className="glass-card max-w-3xl mx-auto p-8">
-            {!results ? (
-              <div className="animate-fade-in">
-                {/* Progress indicator */}
-                <div className="mb-8">
-                  <div className="flex justify-between mb-2">
-                    <span className="text-sm text-muted-foreground">Question {currentStep + 1} of {questions.length}</span>
-                    <span className="text-sm font-medium">{Math.round(((currentStep + 1) / questions.length) * 100)}%</span>
-                  </div>
-                  <div className="w-full bg-muted rounded-full h-2.5">
-                    <div 
-                      className="bg-syria-terracotta h-2.5 rounded-full transition-all duration-500" 
-                      style={{ width: `${((currentStep + 1) / questions.length) * 100}%` }}
-                    ></div>
-                  </div>
+      <div className="container-custom py-28">
+        <div className="text-center mb-12">
+          <h1 className="heading-2 mb-4">اعرف احتياجاتك</h1>
+          <p className="subtitle mx-auto">أجب على الأسئلة البسيطة التالية لمساعدتك في اختيار السيارة المناسبة لاحتياجاتك وميزانيتك.</p>
+        </div>
+        
+        {!showResults ? (
+          <Card className="max-w-3xl mx-auto">
+            <CardContent className="pt-6">
+              <div className="mb-8">
+                <div className="flex justify-between text-sm mb-2">
+                  <span>السؤال {currentQuestion + 1} من {questions.length}</span>
+                  <span>{Math.round(progress)}%</span>
                 </div>
-
-                <div className="mb-8">
-                  <h2 className="text-2xl font-medium mb-2">{currentQuestion.question}</h2>
-                  <p className="text-muted-foreground">{currentQuestion.description}</p>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-                  {currentQuestion.options.map((option) => (
+                <Progress value={progress} className="h-2" />
+              </div>
+              
+              <div className="mb-8">
+                <h2 className="text-xl font-bold mb-6">{questions[currentQuestion].text}</h2>
+                
+                <RadioGroup 
+                  value={answers[questions[currentQuestion].id]} 
+                  onValueChange={(value) => handleAnswer(questions[currentQuestion].id, value)}
+                  className="space-y-3"
+                >
+                  {questions[currentQuestion].options.map((option) => (
                     <div 
                       key={option.id}
-                      className={`border rounded-lg p-5 cursor-pointer transition-all duration-300 hover:border-primary/50 hover:shadow-md flex flex-col items-center text-center ${
-                        selectedOption === option.id 
-                          ? 'border-primary bg-primary/5 shadow-sm' 
-                          : 'border-border'
+                      className={`flex items-center space-x-2 rtl:space-x-reverse rounded-lg border p-4 cursor-pointer transition-all ${
+                        answers[questions[currentQuestion].id] === option.id 
+                          ? 'border-primary bg-primary/5' 
+                          : 'border-border hover:border-primary/30 hover:bg-primary/5'
                       }`}
-                      onClick={() => handleOptionSelect(currentQuestion.id, option.id)}
+                      onClick={() => handleAnswer(questions[currentQuestion].id, option.id)}
                     >
-                      {option.icon}
-                      <span className="text-base font-medium">{option.text}</span>
-                      {selectedOption === option.id && (
-                        <div className="absolute top-3 right-3 text-primary">
-                          <Check size={18} />
+                      <RadioGroupItem 
+                        value={option.id} 
+                        id={`option-${option.id}`} 
+                        className="ml-3 rtl:mr-3 rtl:ml-0" 
+                      />
+                      <label 
+                        htmlFor={`option-${option.id}`}
+                        className="flex-1 cursor-pointer font-medium"
+                      >
+                        {option.text}
+                      </label>
+                    </div>
+                  ))}
+                </RadioGroup>
+              </div>
+              
+              <div className="flex justify-between">
+                <Button 
+                  variant="outline" 
+                  onClick={handleBack}
+                  disabled={currentQuestion === 0}
+                >
+                  السابق
+                </Button>
+                <Button 
+                  onClick={handleNext}
+                  disabled={!answers[questions[currentQuestion].id]}
+                >
+                  {currentQuestion === questions.length - 1 ? 'إظهار النتائج' : 'التالي'}
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        ) : (
+          <div className="max-w-4xl mx-auto">
+            <Card className="mb-10">
+              <CardContent className="pt-6">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="h-12 w-12 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0">
+                    <CheckCircle2 className="h-6 w-6 text-green-600" />
+                  </div>
+                  <div>
+                    <h2 className="text-xl font-bold">توصياتنا لك</h2>
+                    <p className="text-muted-foreground">بناءً على إجاباتك، نعتقد أن هذه السيارات ستناسب احتياجاتك.</p>
+                  </div>
+                </div>
+                
+                <Separator className="my-6" />
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {getRecommendations().map((car, index) => (
+                    <div key={index} className="bg-white rounded-lg overflow-hidden shadow-md border border-border/30">
+                      <div className="relative h-48">
+                        <img src={car.image} alt={car.name} className="h-full w-full object-cover" />
+                      </div>
+                      <div className="p-4">
+                        <h3 className="font-bold text-lg mb-2">{car.name}</h3>
+                        <div className="flex justify-between mb-4">
+                          <span className="text-primary font-bold">{car.price}</span>
                         </div>
-                      )}
+                        <Button className="w-full">عرض التفاصيل</Button>
+                      </div>
                     </div>
                   ))}
                 </div>
-
-                <div className="flex justify-between">
-                  <Button
-                    variant="outline"
-                    onClick={handlePrevious}
-                    disabled={currentStep === 0}
-                    className="flex items-center gap-2"
-                  >
-                    <ArrowLeft size={16} />
-                    Previous
-                  </Button>
-                  <Button
-                    onClick={handleNext}
-                    className="flex items-center gap-2 bg-primary text-white hover:bg-primary/90"
-                  >
-                    {currentStep < questions.length - 1 ? 'Next' : 'See Results'}
-                    <ArrowRight size={16} />
-                  </Button>
-                </div>
+              </CardContent>
+            </Card>
+            
+            <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 flex items-start gap-4">
+              <AlertCircle className="h-6 w-6 text-amber-500 mt-1 flex-shrink-0" />
+              <div>
+                <h3 className="font-bold mb-2">ملاحظة مهمة</h3>
+                <p className="text-muted-foreground">
+                  هذه التوصيات مبنية على إجاباتك فقط وتعتبر توجيهية. ننصح بزيارة معارض السيارات والقيام بتجربة قيادة قبل اتخاذ القرار النهائي.
+                </p>
               </div>
-            ) : (
-              <div className="animate-fade-in">
-                <div className="text-center mb-8">
-                  <h2 className="text-2xl font-medium mb-2">Your Recommended Vehicles</h2>
-                  <p className="text-muted-foreground">
-                    Based on your preferences, we've selected these vehicles that would be perfect for you.
-                  </p>
-                </div>
-
-                {results.map((category, i) => (
-                  <div key={i} className="mb-10">
-                    <h3 className="text-xl font-medium mb-2">{category.title}</h3>
-                    <p className="text-muted-foreground mb-4">{category.description}</p>
-                    
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                      {category.recommendations.map((car, j) => (
-                        <div key={j} className="border rounded-lg overflow-hidden premium-hover">
-                          <div className="h-40 overflow-hidden">
-                            <img 
-                              src={car.image} 
-                              alt={car.model} 
-                              className="w-full h-full object-cover"
-                            />
-                          </div>
-                          <div className="p-4">
-                            <h4 className="font-medium mb-1">{car.model}</h4>
-                            <p className="text-sm text-muted-foreground mb-3">{car.price}</p>
-                            <Link 
-                              to={`/car-listings?model=${car.model.split(' ')[0]}`}
-                              className="text-sm text-syria-terracotta hover:text-syria-terracotta/80 font-medium"
-                            >
-                              View Similar Cars
-                            </Link>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-
-                <div className="flex flex-col sm:flex-row justify-between gap-4 mt-8">
-                  <Button
-                    variant="outline"
-                    onClick={handleStartOver}
-                    className="flex items-center gap-2"
-                  >
-                    Start Over
-                  </Button>
-                  <Link to="/car-listings">
-                    <Button
-                      className="flex items-center gap-2 bg-primary text-white hover:bg-primary/90 w-full sm:w-auto"
-                    >
-                      Browse All Cars
-                      <ArrowRight size={16} />
-                    </Button>
-                  </Link>
-                </div>
-              </div>
-            )}
+            </div>
+            
+            <div className="text-center mt-10">
+              <Button variant="outline" onClick={() => {
+                setShowResults(false);
+                setCurrentQuestion(0);
+                setAnswers({});
+              }}>
+                البدء من جديد
+              </Button>
+            </div>
           </div>
-        </div>
-      </section>
+        )}
+      </div>
     </MainLayout>
   );
 };
