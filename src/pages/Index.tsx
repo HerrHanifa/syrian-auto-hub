@@ -96,34 +96,34 @@ const Index = () => {
         <section className="py-16 bg-white">
           <div className="container-custom">
             <div className="text-center mb-12">
-              <h2 className="heading-2 mb-4">Our Services</h2>
-              <p className="subtitle mx-auto">Everything you need for your automotive journey in one place.</p>
+              <h2 className="heading-2 mb-4">خدماتنا</h2>
+              <p className="subtitle mx-auto">كل ما تحتاجه لرحلتك في عالم السيارات في مكان واحد.</p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
               {[
                 {
                   icon: <Car className="h-8 w-8 text-syria-terracotta" />,
-                  title: "New & Used Cars",
-                  description: "Browse our extensive collection of new and pre-owned vehicles from trusted dealers.",
+                  title: "سيارات جديدة ومستعملة",
+                  description: "تصفح مجموعتنا الواسعة من المركبات الجديدة والمستعملة من وكلاء موثوقين.",
                   link: "/car-listings"
                 },
                 {
                   icon: <Clock className="h-8 w-8 text-syria-turquoise" />,
-                  title: "Car Rentals",
-                  description: "Rent a car for a day, week, or longer from our network of rental providers.",
+                  title: "تأجير السيارات",
+                  description: "استأجر سيارة ليوم أو أسبوع أو أكثر من شبكة مزودي خدمة التأجير لدينا.",
                   link: "/rentals"
                 },
                 {
                   icon: <ShoppingBag className="h-8 w-8 text-syria-olive" />,
-                  title: "Spare Parts",
-                  description: "Find genuine and aftermarket parts for all makes and models.",
+                  title: "قطع غيار",
+                  description: "ابحث عن قطع غيار أصلية وبديلة لجميع الماركات والموديلات.",
                   link: "/spare-parts"
                 },
                 {
                   icon: <HelpCircle className="h-8 w-8 text-syria-gold" />,
-                  title: "Know Your Needs",
-                  description: "Answer a few questions and we will help you find the perfect car.",
+                  title: "اعرف احتياجاتك",
+                  description: "أجب على بعض الأسئلة وسنساعدك في العثور على السيارة المناسبة لك.",
                   link: "/know-your-needs"
                 }
               ].map((service, i) => (
@@ -139,7 +139,7 @@ const Index = () => {
                     to={service.link}
                     className="inline-flex items-center text-sm font-medium text-syria-terracotta hover:text-syria-terracotta/80 transition-colors mt-auto"
                   >
-                    Learn More <ArrowRight size={16} className="ml-1" />
+                    المزيد <ArrowRight size={16} className="mr-1" />
                   </Link>
                 </div>
               ))}
@@ -152,14 +152,14 @@ const Index = () => {
           <div className="container-custom">
             <div className="flex flex-col sm:flex-row justify-between items-center mb-10">
               <div>
-                <h2 className="heading-2 mb-2">Featured Cars</h2>
-                <p className="text-muted-foreground">Handpicked premium vehicles for you</p>
+                <h2 className="heading-2 mb-2">سيارات مميزة</h2>
+                <p className="text-muted-foreground">مركبات فاخرة مختارة خصيصاً لك</p>
               </div>
               <Link 
                 to="/car-listings"
                 className="button-primary mt-4 sm:mt-0"
               >
-                View All
+                عرض الكل
               </Link>
             </div>
             
@@ -179,35 +179,35 @@ const Index = () => {
           
           <div className="container-custom relative z-10">
             <div className="text-center mb-12">
-              <h2 className="heading-2 mb-4">Why Choose Syrian Auto Hub</h2>
-              <p className="subtitle mx-auto">The trusted automotive marketplace in Syria for over a decade.</p>
+              <h2 className="heading-2 mb-4">لماذا تختار مركز السيارات السوري</h2>
+              <p className="subtitle mx-auto">سوق السيارات الموثوق في سوريا لأكثر من عقد.</p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
                 {
-                  title: 'Trusted Sellers',
-                  description: 'All dealers and private sellers are verified to ensure a safe and secure transaction.'
+                  title: 'بائعون موثوقون',
+                  description: 'يتم التحقق من جميع الوكلاء والبائعين الخاصين لضمان معاملة آمنة وموثوقة.'
                 },
                 {
-                  title: 'Extensive Selection',
-                  description: 'From luxury to economy, find the widest range of vehicles available in Syria.'
+                  title: 'تشكيلة واسعة',
+                  description: 'من الفاخرة إلى الاقتصادية، اعثر على أوسع مجموعة من المركبات المتاحة في سوريا.'
                 },
                 {
-                  title: 'Competitive Prices',
-                  description: 'Compare prices from multiple sellers to ensure you get the best deal possible.'
+                  title: 'أسعار تنافسية',
+                  description: 'قارن الأسعار من عدة بائعين للتأكد من حصولك على أفضل صفقة ممكنة.'
                 },
                 {
-                  title: 'Expert Support',
-                  description: 'Our automotive experts are available to guide you through your purchase journey.'
+                  title: 'دعم من الخبراء',
+                  description: 'خبراؤنا في السيارات متاحون لإرشادك خلال رحلة الشراء الخاصة بك.'
                 },
                 {
-                  title: 'Quality Assurance',
-                  description: 'All vehicles undergo a thorough inspection process before being listed.'
+                  title: 'ضمان الجودة',
+                  description: 'تخضع جميع المركبات لعملية فحص شاملة قبل إدراجها.'
                 },
                 {
-                  title: 'Nationwide Coverage',
-                  description: 'Find cars and services across all major cities and regions in Syria.'
+                  title: 'تغطية على مستوى البلاد',
+                  description: 'اعثر على السيارات والخدمات في جميع المدن والمناطق الرئيسية في سوريا.'
                 }
               ].map((item, i) => (
                 <div 
@@ -228,14 +228,14 @@ const Index = () => {
           <div className="container-custom">
             <div className="flex flex-col sm:flex-row justify-between items-center mb-10">
               <div>
-                <h2 className="heading-2 mb-2">Recent Listings</h2>
-                <p className="text-muted-foreground">The latest additions to our marketplace</p>
+                <h2 className="heading-2 mb-2">إعلانات حديثة</h2>
+                <p className="text-muted-foreground">أحدث الإضافات إلى سوقنا</p>
               </div>
               <Link 
                 to="/car-listings"
                 className="button-primary mt-4 sm:mt-0"
               >
-                View All
+                عرض الكل
               </Link>
             </div>
             
@@ -252,12 +252,12 @@ const Index = () => {
         {/* Call to Action */}
         <section className="py-20 bg-gradient-to-r from-syria-turquoise/90 to-syria-terracotta/90 text-white">
           <div className="container-custom text-center">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6 max-w-2xl mx-auto">Ready to sell your car? List it today and reach thousands of potential buyers.</h2>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6 max-w-2xl mx-auto">هل أنت مستعد لبيع سيارتك؟ أضفها اليوم وتواصل مع آلاف المشترين المحتملين.</h2>
             <Link 
               to="/list-car"
               className="inline-flex items-center justify-center px-6 py-3 bg-white text-syria-terracotta rounded-md font-medium hover:bg-white/90 transition-colors"
             >
-              List Your Car
+              أضف سيارتك
             </Link>
           </div>
         </section>
