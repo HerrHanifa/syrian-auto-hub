@@ -6,9 +6,9 @@ import { Search, ArrowRight } from 'lucide-react';
 const Hero = () => {
   return (
     <section className="relative pt-28 pb-20 md:pt-32 md:pb-28 overflow-hidden">
-      {/* Background with subtle pattern */}
+      {/* Background with car-themed pattern */}
       <div className="absolute inset-0 bg-gradient-to-br from-syria-sand/40 to-white z-0 overflow-hidden">
-        <div className="absolute inset-0 opacity-5 bg-[url('https://img.freepik.com/premium-vector/arabesque-pattern-seamless-arabic-geometric-pattern-background_8580-1014.jpg')] bg-repeat bg-[length:400px_400px]"></div>
+        <div className="absolute inset-0 opacity-5 bg-[url('https://img.freepik.com/free-vector/car-pattern-automobile-seamless-background-vehicle-icon-silhouette-vector-illustration_53562-14072.jpg')] bg-repeat bg-[length:400px_400px]"></div>
       </div>
       
       <div className="container-custom relative z-10">
