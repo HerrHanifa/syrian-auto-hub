@@ -47,20 +47,20 @@ const CarCard = ({
 
         {featured && (
           <div className="absolute top-3 left-3 bg-syria-gold/90 text-white text-xs font-medium px-2 py-1 rounded-md">
-            Featured
+            مميز
           </div>
         )}
         
         <div className="absolute top-3 right-3 flex gap-2">
           <button 
             className="bg-white/80 hover:bg-white p-1.5 rounded-full text-muted-foreground hover:text-syria-terracotta transition-colors"
-            aria-label="Save to favorites"
+            aria-label="حفظ في المفضلة"
           >
             <Heart size={18} />
           </button>
           <button 
             className="bg-white/80 hover:bg-white p-1.5 rounded-full text-muted-foreground hover:text-syria-terracotta transition-colors"
-            aria-label="Quick view"
+            aria-label="عرض سريع"
           >
             <Eye size={18} />
           </button>
@@ -87,7 +87,7 @@ const CarCard = ({
           </div>
           <div className="flex flex-col items-center p-2 bg-muted/50 rounded-md">
             <Gauge size={16} className="text-muted-foreground mb-1" />
-            <span className="text-xs font-medium">{mileage.toLocaleString()} km</span>
+            <span className="text-xs font-medium">{mileage.toLocaleString()} كم</span>
           </div>
           <div className="flex flex-col items-center p-2 bg-muted/50 rounded-md">
             <Fuel size={16} className="text-muted-foreground mb-1" />
@@ -99,7 +99,7 @@ const CarCard = ({
           to={`/car/${id}`}
           className="block w-full button-primary text-center text-sm"
         >
-          View Details
+          عرض التفاصيل
         </Link>
       </div>
     </div>

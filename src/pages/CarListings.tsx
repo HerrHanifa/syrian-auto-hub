@@ -1,6 +1,6 @@
-
 import React, { useState } from 'react';
 import MainLayout from '../layouts/MainLayout';
+import CarCard from '../components/CarCard';
 import { Search, Filter, ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Slider } from '@/components/ui/slider';
@@ -9,7 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 
 const carMockData = [
   {
-    id: 1,
+    id: "1",
     title: 'مرسيدس بنز الفئة E',
     year: 2023,
     price: 40000,
@@ -21,7 +21,7 @@ const carMockData = [
     featured: true,
   },
   {
-    id: 2,
+    id: "2",
     title: 'بي ام دبليو الفئة 3',
     year: 2022,
     price: 35000,
@@ -33,7 +33,7 @@ const carMockData = [
     featured: false,
   },
   {
-    id: 3,
+    id: "3",
     title: 'تويوتا كامري',
     year: 2021,
     price: 25000,
@@ -45,7 +45,7 @@ const carMockData = [
     featured: false,
   },
   {
-    id: 4,
+    id: "4",
     title: 'هوندا أكورد',
     year: 2023,
     price: 30000,
@@ -57,7 +57,7 @@ const carMockData = [
     featured: true,
   },
   {
-    id: 5,
+    id: "5",
     title: 'كيا سبورتاج',
     year: 2022,
     price: 28000,
@@ -69,7 +69,7 @@ const carMockData = [
     featured: false,
   },
   {
-    id: 6,
+    id: "6",
     title: 'هيونداي توسان',
     year: 2021,
     price: 26000,
@@ -169,35 +169,18 @@ const CarListings = () => {
           <h2 className="text-xl font-bold mb-6">السيارات المميزة</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {carMockData.filter(car => car.featured).map((car) => (
-              <div 
-                key={car.id} 
-                className="bg-white rounded-lg overflow-hidden shadow-md transition-all hover:shadow-lg border border-border/30"
-              >
-                <div className="relative h-48">
-                  <img src={car.imageUrl} alt={car.title} className="h-full w-full object-cover" />
-                  <div className="absolute top-3 right-3 bg-primary text-white text-xs px-2 py-1 rounded-full">
-                    مميز
-                  </div>
-                </div>
-                <div className="p-4">
-                  <h3 className="font-bold text-lg mb-2">{car.title}</h3>
-                  <div className="flex justify-between mb-3">
-                    <span className="text-primary font-bold">${car.price.toLocaleString()}</span>
-                    <span className="text-muted-foreground">{car.year}</span>
-                  </div>
-                  <div className="flex items-center text-sm text-muted-foreground mb-1">
-                    <span>{car.location}</span>
-                    <span className="mx-2">•</span>
-                    <span>{car.kilometers.toLocaleString()} كم</span>
-                  </div>
-                  <div className="flex items-center text-sm text-muted-foreground">
-                    <span>{car.fuelType}</span>
-                    <span className="mx-2">•</span>
-                    <span>{car.transmission}</span>
-                  </div>
-                  <Button variant="outline" className="w-full mt-4">عرض التفاصيل</Button>
-                </div>
-              </div>
+              <CarCard
+                key={car.id}
+                id={car.id}
+                title={car.title}
+                price={car.price}
+                location={car.location}
+                year={car.year}
+                mileage={car.kilometers}
+                fuel={car.fuelType}
+                imageUrl={car.imageUrl}
+                featured={car.featured}
+              />
             ))}
           </div>
         </div>
@@ -207,37 +190,18 @@ const CarListings = () => {
           <h2 className="text-xl font-bold mb-6">جميع السيارات المتاحة</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {carMockData.map((car) => (
-              <div 
-                key={car.id} 
-                className="bg-white rounded-lg overflow-hidden shadow-md transition-all hover:shadow-lg border border-border/30"
-              >
-                <div className="relative h-48">
-                  <img src={car.imageUrl} alt={car.title} className="h-full w-full object-cover" />
-                  {car.featured && (
-                    <div className="absolute top-3 right-3 bg-primary text-white text-xs px-2 py-1 rounded-full">
-                      مميز
-                    </div>
-                  )}
-                </div>
-                <div className="p-4">
-                  <h3 className="font-bold text-lg mb-2">{car.title}</h3>
-                  <div className="flex justify-between mb-3">
-                    <span className="text-primary font-bold">${car.price.toLocaleString()}</span>
-                    <span className="text-muted-foreground">{car.year}</span>
-                  </div>
-                  <div className="flex items-center text-sm text-muted-foreground mb-1">
-                    <span>{car.location}</span>
-                    <span className="mx-2">•</span>
-                    <span>{car.kilometers.toLocaleString()} كم</span>
-                  </div>
-                  <div className="flex items-center text-sm text-muted-foreground">
-                    <span>{car.fuelType}</span>
-                    <span className="mx-2">•</span>
-                    <span>{car.transmission}</span>
-                  </div>
-                  <Button variant="outline" className="w-full mt-4">عرض التفاصيل</Button>
-                </div>
-              </div>
+              <CarCard
+                key={car.id}
+                id={car.id}
+                title={car.title}
+                price={car.price}
+                location={car.location}
+                year={car.year}
+                mileage={car.kilometers}
+                fuel={car.fuelType}
+                imageUrl={car.imageUrl}
+                featured={car.featured}
+              />
             ))}
           </div>
         </div>
