@@ -254,7 +254,7 @@ const Index = () => {
           <div className="container-custom text-center">
             <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6 max-w-2xl mx-auto">هل أنت مستعد لبيع سيارتك؟ أضفها اليوم وتواصل مع آلاف المشترين المحتملين.</h2>
             <Link 
-              to="/list-car"
+              to="/add-car"
               className="inline-flex items-center justify-center px-6 py-3 bg-white text-syria-terracotta rounded-md font-medium hover:bg-white/90 transition-colors"
             >
               أضف سيارتك

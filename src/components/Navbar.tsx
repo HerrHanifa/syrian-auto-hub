@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown, Car, ShoppingBag, Clock, HelpCircle } from 'lucide-react';
+import { Menu, X, ChevronDown, Car, ShoppingBag, Clock, HelpCircle, PlusCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const Navbar = () => {
@@ -74,10 +74,11 @@ const Navbar = () => {
               تسجيل الدخول
             </Link>
             <Link
-              to="/register"
-              className="button-primary text-sm"
+              to="/add-car"
+              className="button-primary text-sm flex items-center gap-1.5"
             >
-              أضف سيارتك
+              <PlusCircle size={16} />
+              <span>أضف سيارتك</span>
             </Link>
           </div>
 
@@ -120,11 +121,12 @@ const Navbar = () => {
                   تسجيل الدخول
                 </Link>
                 <Link
-                  to="/register"
-                  className="button-primary"
+                  to="/add-car"
+                  className="button-primary flex items-center gap-2 justify-center"
                   onClick={closeMenu}
                 >
-                  أضف سيارتك
+                  <PlusCircle size={16} />
+                  <span>أضف سيارتك</span>
                 </Link>
               </div>
             </div>
