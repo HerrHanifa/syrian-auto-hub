@@ -1,9 +1,11 @@
+
 import React from 'react';
 import MainLayout from '../layouts/MainLayout';
 import Hero from '../components/Hero';
 import CarCard from '../components/CarCard';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ShoppingBag, Clock, Car, HelpCircle } from 'lucide-react';
+import SEO from '../components/SEO';
 
 // Sample car data (in a real app, this would come from an API or state management)
 const featuredCars = [
@@ -87,8 +89,27 @@ const recentCars = [
 ];
 
 const Index = () => {
+  // Structured data for the homepage
+  const homeStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "مركز السيارات السوري",
+    "url": "https://syrianautohub.com",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://syrianautohub.com/car-listings?search={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  };
+
   return (
-    <MainLayout>
+    <MainLayout structuredData={homeStructuredData}>
+      <SEO 
+        title="مركز السيارات السوري - سوق السيارات الرائد في سوريا"
+        description="أكبر سوق للسيارات الجديدة والمستعملة في سوريا. تصفح آلاف السيارات من الوكلاء الموثوقين والبائعين الخاصين."
+        canonicalUrl="/"
+        keywords="سيارات سوريا, بيع سيارات, شراء سيارات, سيارات مستعملة, سيارات جديدة, سوق السيارات"
+      />
       <div className="flex flex-col">
         <Hero />
         

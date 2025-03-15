@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Slider } from '@/components/ui/slider';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import SEO from '../components/SEO';
 
 const carMockData = [
   {
@@ -87,8 +88,39 @@ const CarListings = () => {
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 100000]);
   const [showFilters, setShowFilters] = useState(false);
   
+  // Structured data for the car listings page
+  const carListingsStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": carMockData.map((car, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "item": {
+        "@type": "Car",
+        "name": car.title,
+        "offers": {
+          "@type": "Offer",
+          "price": car.price,
+          "priceCurrency": "USD"
+        },
+        "vehicleModelDate": car.year,
+        "mileageFromOdometer": {
+          "@type": "QuantitativeValue",
+          "value": car.kilometers,
+          "unitCode": "KMT"
+        }
+      }
+    }))
+  };
+  
   return (
-    <MainLayout>
+    <MainLayout structuredData={carListingsStructuredData}>
+      <SEO 
+        title="تصفح السيارات المتاحة في سوريا | مركز السيارات السوري"
+        description="تصفح مجموعتنا الواسعة من السيارات الجديدة والمستعملة في سوريا. مجموعة متنوعة من العلامات التجارية والموديلات والأسعار."
+        canonicalUrl="/car-listings"
+        keywords="سيارات للبيع في سوريا, سيارات مستعملة, سيارات جديدة, شراء سيارات"
+      />
       <div className="container-custom py-28">
         <h1 className="heading-2 mb-6">تصفح السيارات المتاحة</h1>
         
