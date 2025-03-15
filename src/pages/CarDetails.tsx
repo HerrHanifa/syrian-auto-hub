@@ -13,14 +13,18 @@ import {
   Users, 
   Heart, 
   Share2, 
-  Phone 
+  Phone,
+  ShieldCheck,
+  Building2
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Card, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { Input } from '@/components/ui/input';
+import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/components/ui/use-toast';
+import SEO from '../components/SEO';
 
 // Mock data for a single car
 const carData = {
@@ -36,6 +40,10 @@ const carData = {
   color: "أسود",
   doors: 4,
   seats: 5,
+  warrantyIncluded: true,
+  inspectedBy: "ورشة الأمان للسيارات",
+  inspectionDate: "2023-12-15",
+  warrantyPeriod: "12 شهر",
   features: [
     "نظام ملاحة",
     "شاشة لمس",
@@ -96,6 +104,11 @@ const CarDetails = () => {
 
   return (
     <MainLayout>
+      <SEO 
+        title={`${carData.title} - مركز السيارات السوري`}
+        description={`${carData.description.substring(0, 160)}...`}
+        canonicalUrl={`/car/${id}`}
+      />
       <div className="container-custom py-28">
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
@@ -144,6 +157,22 @@ const CarDetails = () => {
                 
                 <TabsContent value="details" className="mt-6">
                   <div className="bg-white p-6 rounded-lg shadow-sm border border-border/50">
+                    {carData.warrantyIncluded && (
+                      <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+                        <div className="flex items-center gap-2 mb-2">
+                          <ShieldCheck className="text-green-600" size={24} />
+                          <h3 className="font-bold text-green-700">تم الفحص - يشمل الضمان</h3>
+                        </div>
+                        <p className="text-green-700 mb-2">
+                          تم فحص هذه السيارة بواسطة {carData.inspectedBy} بتاريخ {carData.inspectionDate} وتأتي مع ضمان لمدة {carData.warrantyPeriod}.
+                        </p>
+                        <Link to="/workshops" className="text-green-800 font-medium hover:underline flex items-center gap-1">
+                          <Building2 size={16} />
+                          <span>معرفة المزيد عن الورشة</span>
+                        </Link>
+                      </div>
+                    )}
+
                     <h3 className="text-lg font-bold mb-4">معلومات السيارة</h3>
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-y-4">
                       <div className="flex items-center gap-2">
@@ -274,6 +303,15 @@ const CarDetails = () => {
                   ${carData.price.toLocaleString()}
                 </div>
                 
+                {carData.warrantyIncluded && (
+                  <div className="mb-4">
+                    <Badge className="bg-green-600 text-white hover:bg-green-700 flex gap-1 items-center text-sm py-1.5">
+                      <ShieldCheck size={14} />
+                      <span>تم الفحص - يشمل الضمان</span>
+                    </Badge>
+                  </div>
+                )}
+                
                 <div className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
                   <MapPin size={14} />
                   <span>{carData.location}</span>
@@ -327,6 +365,12 @@ const CarDetails = () => {
                     <span className="text-muted-foreground">اللون</span>
                     <span className="font-medium">{carData.color}</span>
                   </div>
+                  {carData.warrantyIncluded && (
+                    <div className="flex justify-between">
+                      <span className="text-muted-foreground">فترة الضمان</span>
+                      <span className="font-medium">{carData.warrantyPeriod}</span>
+                    </div>
+                  )}
                 </div>
               </CardContent>
             </Card>

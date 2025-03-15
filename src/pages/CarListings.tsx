@@ -1,7 +1,8 @@
+
 import React, { useState } from 'react';
 import MainLayout from '../layouts/MainLayout';
 import CarCard from '../components/CarCard';
-import { Search, Filter, ChevronDown } from 'lucide-react';
+import { Search, Filter, ChevronDown, ShieldCheck } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Slider } from '@/components/ui/slider';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -20,6 +21,8 @@ const carMockData = [
     fuelType: 'بنزين',
     transmission: 'أوتوماتيك',
     featured: true,
+    warrantyIncluded: true,
+    inspectedBy: 'ورشة النخبة'
   },
   {
     id: "2",
@@ -32,6 +35,7 @@ const carMockData = [
     fuelType: 'بنزين',
     transmission: 'أوتوماتيك',
     featured: false,
+    warrantyIncluded: false
   },
   {
     id: "3",
@@ -44,6 +48,8 @@ const carMockData = [
     fuelType: 'هايبرد',
     transmission: 'أوتوماتيك',
     featured: false,
+    warrantyIncluded: true,
+    inspectedBy: 'ورشة الأمان للسيارات'
   },
   {
     id: "4",
@@ -56,6 +62,8 @@ const carMockData = [
     fuelType: 'بنزين',
     transmission: 'أوتوماتيك',
     featured: true,
+    warrantyIncluded: true,
+    inspectedBy: 'ورشة الخبير'
   },
   {
     id: "5",
@@ -68,6 +76,7 @@ const carMockData = [
     fuelType: 'بنزين',
     transmission: 'أوتوماتيك',
     featured: false,
+    warrantyIncluded: false
   },
   {
     id: "6",
@@ -80,6 +89,7 @@ const carMockData = [
     fuelType: 'بنزين',
     transmission: 'أوتوماتيك',
     featured: true,
+    warrantyIncluded: false
   }
 ];
 
@@ -87,6 +97,7 @@ const CarListings = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 100000]);
   const [showFilters, setShowFilters] = useState(false);
+  const [warrantyFilter, setWarrantyFilter] = useState(false);
   
   // Structured data for the car listings page
   const carListingsStructuredData = {
@@ -112,6 +123,11 @@ const CarListings = () => {
       }
     }))
   };
+
+  // Filter cars based on warranty if the filter is active
+  const filteredCars = warrantyFilter 
+    ? carMockData.filter(car => car.warrantyIncluded) 
+    : carMockData;
   
   return (
     <MainLayout structuredData={carListingsStructuredData}>
@@ -165,17 +181,37 @@ const CarListings = () => {
                 </div>
               </div>
               
-              <div>
-                <h3 className="font-medium mb-3">نوع الوقود</h3>
-                <div className="space-y-2">
-                  {['بنزين', 'ديزل', 'هايبرد', 'كهربائي'].map((fuel) => (
-                    <div className="flex items-center space-x-2 rtl:space-x-reverse" key={fuel}>
-                      <Checkbox id={`fuel-${fuel}`} />
-                      <label htmlFor={`fuel-${fuel}`} className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 mr-2">
-                        {fuel}
-                      </label>
-                    </div>
-                  ))}
+              <div className="space-y-5">
+                <div>
+                  <h3 className="font-medium mb-3">نوع الوقود</h3>
+                  <div className="space-y-2">
+                    {['بنزين', 'ديزل', 'هايبرد', 'كهربائي'].map((fuel) => (
+                      <div className="flex items-center space-x-2 rtl:space-x-reverse" key={fuel}>
+                        <Checkbox id={`fuel-${fuel}`} />
+                        <label htmlFor={`fuel-${fuel}`} className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 mr-2">
+                          {fuel}
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                
+                <div>
+                  <h3 className="font-medium mb-3">الضمان</h3>
+                  <div className="flex items-center space-x-2 rtl:space-x-reverse">
+                    <Checkbox 
+                      id="warranty" 
+                      checked={warrantyFilter}
+                      onCheckedChange={(checked) => setWarrantyFilter(checked as boolean)}
+                    />
+                    <label 
+                      htmlFor="warranty" 
+                      className="text-sm font-medium leading-none flex items-center gap-1 mr-2"
+                    >
+                      <ShieldCheck size={16} className="text-green-600" />
+                      <span>يشمل الضمان</span>
+                    </label>
+                  </div>
                 </div>
               </div>
               
@@ -200,7 +236,7 @@ const CarListings = () => {
         <div className="mb-12">
           <h2 className="text-xl font-bold mb-6">السيارات المميزة</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {carMockData.filter(car => car.featured).map((car) => (
+            {filteredCars.filter(car => car.featured).map((car) => (
               <CarCard
                 key={car.id}
                 id={car.id}
@@ -212,6 +248,8 @@ const CarListings = () => {
                 fuel={car.fuelType}
                 imageUrl={car.imageUrl}
                 featured={car.featured}
+                warrantyIncluded={car.warrantyIncluded}
+                inspectedBy={car.inspectedBy}
               />
             ))}
           </div>
@@ -221,7 +259,7 @@ const CarListings = () => {
         <div>
           <h2 className="text-xl font-bold mb-6">جميع السيارات المتاحة</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {carMockData.map((car) => (
+            {filteredCars.map((car) => (
               <CarCard
                 key={car.id}
                 id={car.id}
@@ -233,6 +271,8 @@ const CarListings = () => {
                 fuel={car.fuelType}
                 imageUrl={car.imageUrl}
                 featured={car.featured}
+                warrantyIncluded={car.warrantyIncluded}
+                inspectedBy={car.inspectedBy}
               />
             ))}
           </div>

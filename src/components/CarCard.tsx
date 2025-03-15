@@ -1,8 +1,9 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Eye, Heart, MapPin, Calendar, Gauge, Fuel } from 'lucide-react';
+import { Eye, Heart, MapPin, Calendar, Gauge, Fuel, ShieldCheck } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Badge } from '@/components/ui/badge';
 
 interface CarCardProps {
   id: string;
@@ -14,6 +15,8 @@ interface CarCardProps {
   fuel: string;
   imageUrl: string;
   featured?: boolean;
+  warrantyIncluded?: boolean;
+  inspectedBy?: string;
   className?: string;
 }
 
@@ -27,6 +30,8 @@ const CarCard = ({
   fuel,
   imageUrl,
   featured = false,
+  warrantyIncluded = false,
+  inspectedBy,
   className,
 }: CarCardProps) => {
   return (
@@ -48,6 +53,13 @@ const CarCard = ({
         {featured && (
           <div className="absolute top-3 left-3 bg-syria-gold/90 text-white text-xs font-medium px-2 py-1 rounded-md">
             مميز
+          </div>
+        )}
+        
+        {warrantyIncluded && (
+          <div className="absolute bottom-3 left-3 bg-green-600/90 text-white text-xs font-medium px-2 py-1 rounded-md flex items-center gap-1.5">
+            <ShieldCheck size={14} />
+            <span>ضمان مشمول</span>
           </div>
         )}
         
@@ -79,6 +91,15 @@ const CarCard = ({
           <MapPin size={14} />
           <span>{location}</span>
         </div>
+
+        {warrantyIncluded && inspectedBy && (
+          <div className="mb-3">
+            <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200 flex gap-1 items-center">
+              <ShieldCheck size={12} />
+              <span>تم فحصه بواسطة {inspectedBy}</span>
+            </Badge>
+          </div>
+        )}
 
         <div className="grid grid-cols-3 gap-2 mb-4">
           <div className="flex flex-col items-center p-2 bg-muted/50 rounded-md">
